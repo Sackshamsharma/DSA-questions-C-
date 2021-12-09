@@ -5,8 +5,46 @@
 
 using namespace std;
 
+//using Stack
+void mergeOverlappingIntervals(vector<vector<int>>& intervals) {
+    
+    
+    sort(intervals.begin(),intervals.end());            
+    stack<vector<int>> st;
+    st.push(intervals[0]);
+    
+     vector<int> temp=st.top();
+     
+
+    for(int i=1;i<intervals.size();i++){
+        
+        if(intervals[i][0]<=temp[1]){
+temp[1]=max(temp[1],intervals[i][1]); 
+        st.top()[1]=temp[1];
+        
+        }
+        
+        else{
+            st.push(intervals[i]);
+            temp=st.top();
+        }
+    }
+    
+    stack<vector<int>> ans;
+    while(st.empty()==false){
+        ans.push(st.top());
+        st.pop();
+    }
+    
+    while(ans.empty()==false){
+        cout<<ans.top()[0]<<" "<<ans.top()[1]<<endl;
+        
+        ans.pop();
+    }
+}
 
 
+//using vectors only
 void mergeOverlappingIntervals(vector<vector<int>>& intervals) {
 
  sort(intervals.begin(),intervals.end());
