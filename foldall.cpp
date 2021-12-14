@@ -41,6 +41,8 @@ void reorderList(ListNode* head)
     }
 
 
+
+//using iteration tortoise and hare method, t.c=O(n) and s.c=O(1)
 struct Node* reverse(struct Node *head)
     {
         Node* curr=head;
