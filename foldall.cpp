@@ -12,6 +12,34 @@ struct Node{
     }
 };
 
+// using stack in t.c=O(n) and s.c=O(n)
+void reorderList(ListNode* head) 
+    {
+    stack<ListNode* > st;
+        ListNode* curr=head;
+        
+        int len=0;
+        while(curr!=NULL){
+            st.push(curr);
+            curr=curr->next;
+            len++;
+        }
+        
+        ListNode*end;
+        ListNode*next;
+        curr=head;
+        
+        for(int i=0;i<len/2;i++){
+            end=st.top();
+            st.pop();
+            next=curr->next;
+            curr->next=end;
+            end->next=next;
+            curr=next;
+        }
+        curr->next=NULL;
+    }
+
 
 struct Node* reverse(struct Node *head)
     {
